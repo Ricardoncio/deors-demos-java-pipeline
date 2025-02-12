@@ -2,6 +2,7 @@
 pipeline {
     agent {
         kubernetes {
+            label 'jenkins'
             defaultContainer 'jdk'
             yaml '''
 apiVersion: v1
@@ -257,7 +258,7 @@ spec:
 
     post {
         always {
-            script {
+            node('jenkins') {
                 container('kubectl') {
                     withKubeConfig([credentialsId: "$KUBERNETES_CLUSTER_CRED_ID"]) {
                         sh "echo '-=- stop test container and remove deployment -=-'"
