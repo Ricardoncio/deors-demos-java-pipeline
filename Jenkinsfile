@@ -249,12 +249,14 @@ spec:
 
     post {
         always {
-            echo '-=- stop test container and remove deployment -=-'
-            container('kubectl') {
-                withKubeConfig([credentialsId: "$KUBERNETES_CLUSTER_CRED_ID"]) {
-                    sh "kubectl delete pod $EPHTEST_CONTAINER_NAME"
-                    sh "kubectl delete service $EPHTEST_CONTAINER_NAME"
-                    sh "kubectl delete service $EPHTEST_CONTAINER_NAME-jacoco"
+            node {
+                echo '-=- stop test container and remove deployment -=-'
+                container('kubectl') {
+                    withKubeConfig([credentialsId: "$KUBERNETES_CLUSTER_CRED_ID"]) {
+                        sh "kubectl delete pod $EPHTEST_CONTAINER_NAME"
+                        sh "kubectl delete service $EPHTEST_CONTAINER_NAME"
+                        sh "kubectl delete service $EPHTEST_CONTAINER_NAME-jacoco"
+                    }
                 }
             }
         }
