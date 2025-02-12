@@ -249,7 +249,7 @@ spec:
 
     post {
         always {
-            node('master') {
+            node('slave') {
                 echo '-=- stop test container and remove deployment -=-'
                 container('kubectl') {
                     withKubeConfig([credentialsId: "$KUBERNETES_CLUSTER_CRED_ID"]) {
