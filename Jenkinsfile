@@ -11,7 +11,7 @@ spec:
     - name: jdk
       image: docker.io/eclipse-temurin:20.0.1_9-jdk
       command:
-        - cat
+        - echo "hola"
       tty: true
       volumeMounts:
         - name: m2-cache
@@ -19,7 +19,7 @@ spec:
     - name: podman
       image: quay.io/containers/podman:v4.5.1
       command:
-        - cat
+        - echo "hola"
       tty: true
       securityContext:
         runAsUser: 0
@@ -27,7 +27,7 @@ spec:
     - name: kubectl
       image: docker.io/bitnami/kubectl:1.27.3
       command:
-        - cat
+        - echo "hola"
       tty: true
       securityContext:
         runAsUser: 0
@@ -35,7 +35,7 @@ spec:
     - name: lhci
       image: docker.io/patrickhulce/lhci-client:0.12.0
       command:
-        - cat
+        - echo "hola"
       tty: true
       securityContext:
         runAsUser: 0
@@ -249,7 +249,7 @@ spec:
 
     post {
         always {
-            node('slave') {
+            node('jenkins') {
                 echo '-=- stop test container and remove deployment -=-'
                 container('kubectl') {
                     withKubeConfig([credentialsId: "$KUBERNETES_CLUSTER_CRED_ID"]) {
