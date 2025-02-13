@@ -13,7 +13,7 @@ spec:
       command:
         - "/bin/sh"
         - "-c"
-        - "echo hola"
+        - "echo hola && sleep infinity"
       tty: true
       volumeMounts:
         - name: m2-cache
@@ -23,7 +23,7 @@ spec:
       command:
         - "/bin/sh"
         - "-c"
-        - "echo hola"
+        - "echo hola && sleep infinity"
       tty: true
       securityContext:
         runAsUser: 0
@@ -33,7 +33,7 @@ spec:
       command:
         - "/bin/sh"
         - "-c"
-        - "echo hola"
+        - "echo hola && sleep infinity"
       tty: true
       securityContext:
         runAsUser: 0
@@ -43,7 +43,7 @@ spec:
       command:
         - "/bin/sh"
         - "-c"
-        - "echo hola"
+        - "echo hola && sleep infinity"
       tty: true
       securityContext:
         runAsUser: 0
