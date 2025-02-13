@@ -114,7 +114,7 @@ spec:
         stage('Compile') {
             steps {
                 echo '-=- compiling project -=-'
-                sh './mvnw clean install -U'
+                sh './mvnw clean install -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true'
                 sh './mvnw compile'
             }
         }
