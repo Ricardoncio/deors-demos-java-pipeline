@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class HelloService {
 
-    @Value("${defaultGreeting}")
+    @Value("Hello!")
     private String defaultGreeting;
 
     public HelloService() {
