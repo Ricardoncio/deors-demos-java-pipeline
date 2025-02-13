@@ -258,7 +258,7 @@ spec:
 
     post {
         always {
-            node('jenkins-agent') {
+            node('c11-8g2y61etqeq') {
                 container('kubectl') {
                     withKubeConfig([credentialsId: "$KUBERNETES_CLUSTER_CRED_ID"]) {
                         sh "echo '-=- stop test container and remove deployment -=-'"
