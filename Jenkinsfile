@@ -2,6 +2,7 @@
 pipeline {
     agent {
         kubernetes {
+            label 'jenkins-agent'
             defaultContainer 'jdk'
             yaml '''
 apiVersion: v1
@@ -257,14 +258,12 @@ spec:
 
     post {
         always {
-            node {
-                container('kubectl') {
-                    withKubeConfig([credentialsId: "$KUBERNETES_CLUSTER_CRED_ID"]) {
-                        sh "echo '-=- stop test container and remove deployment -=-'"
-                        sh "kubectl delete pod $EPHTEST_CONTAINER_NAME"
-                        sh "kubectl delete service $EPHTEST_CONTAINER_NAME"
-                        sh "kubectl delete service $EPHTEST_CONTAINER_NAME-jacoco"
-                    }
+            container('kubectl') {
+                withKubeConfig([credentialsId: "$KUBERNETES_CLUSTER_CRED_ID"]) {
+                    sh "echo '-=- stop test container and remove deployment -=-'"
+                    sh "kubectl delete pod $EPHTEST_CONTAINER_NAME || true"
+                    sh "kubectl delete service $EPHTEST_CONTAINER_NAME || true"
+                    sh "kubectl delete service $EPHTEST_CONTAINER_NAME-jacoco || true"
                 }
             }
         }
