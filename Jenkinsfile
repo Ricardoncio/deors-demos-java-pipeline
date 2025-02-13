@@ -114,6 +114,7 @@ spec:
         stage('Compile') {
             steps {
                 echo '-=- compiling project -=-'
+                sh './mvnw clean install -U'
                 sh './mvnw compile'
             }
         }
