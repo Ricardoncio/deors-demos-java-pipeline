@@ -116,7 +116,6 @@ spec:
                 echo '-=- compiling project -=-'
                 container('jdk') {
                     echo "EPHTEST_BASE_URL: ${EPHTEST_BASE_URL}"
-                    sh "curl -v ${EPHTEST_BASE_URL}hello"
                     sh './mvnw compile'
                 }
             }
