@@ -114,8 +114,11 @@ spec:
         stage('Compile') {
             steps {
                 echo '-=- compiling project -=-'
-                sh './mvnw clean install -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true'
-                sh './mvnw compile -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true'
+                container('jdk') {
+                    echo "EPHTEST_BASE_URL: ${EPHTEST_BASE_URL}"
+                    sh "curl -v ${EPHTEST_BASE_URL}hello"
+                    sh './mvnw compile'
+                }
             }
         }
 
