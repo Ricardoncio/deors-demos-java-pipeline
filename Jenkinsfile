@@ -158,6 +158,9 @@ spec:
 
         stage('Package') {
             steps {
+                container('jdk') {
+                    sh 'apt-get update && apt-get install -y ca-certificates'
+                }
                 echo '-=- packaging project -=-'
                 sh './mvnw package -DskipTests'
                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
