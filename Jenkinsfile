@@ -77,11 +77,11 @@ spec:
         // credentials
         KUBERNETES_CLUSTER_CRED_ID = 'k3s-lima-vm-kubeconfig'
         CONTAINER_REGISTRY_CRED = credentials("docker-hub-$IMAGE_ORG")
-//        LIGHTHOUSE_TOKEN = credentials("ci-lighthouse-token-$APP_NAME")
+        LIGHTHOUSE_TOKEN = credentials("ci-lighthouse-token-$APP_NAME")
 
         // external systems
 //        SELENIUM_URL = credentials('ci-selenium-url') // typically ends with '/wd/hub'
-//        LIGHTHOUSE_URL = credentials('ci-lighthouse-url')
+        LIGHTHOUSE_URL = credentials('ci-lighthouse-url')
     }
 
     stages {
@@ -202,7 +202,7 @@ spec:
                 sh 'mkdir target/site/jacoco-it'
                 sh 'java -jar target/dependency/jacococli.jar report target/jacoco-it.exec --classfiles target/classes --xml target/site/jacoco-it/jacoco.xml'
                 junit 'target/failsafe-reports/*.xml'
-                //jacoco execPattern: 'target/jacoco-it.exec'
+                jacoco execPattern: 'target/jacoco-it.exec'
             }
         }
 
@@ -219,7 +219,7 @@ spec:
             }
         }
 
-        /*stage('Web page performance analysis') {
+        stage('Web page performance analysis') {
             steps {
                 echo '-=- execute web page performance analysis -=-'
                 container('lhci') {
@@ -233,7 +233,7 @@ spec:
                     """
                 }
             }
-        }*/
+        }
 
         stage('Code inspection & quality gate') {
             steps {
