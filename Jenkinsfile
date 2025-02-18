@@ -202,7 +202,7 @@ spec:
                 sh 'mkdir target/site/jacoco-it'
                 sh 'java -jar target/dependency/jacococli.jar report target/jacoco-it.exec --classfiles target/classes --xml target/site/jacoco-it/jacoco.xml'
                 junit 'target/failsafe-reports/*.xml'
-                jacoco execPattern: 'target/jacoco-it.exec'
+                //jacoco execPattern: 'target/jacoco-it.exec'
             }
         }
 
